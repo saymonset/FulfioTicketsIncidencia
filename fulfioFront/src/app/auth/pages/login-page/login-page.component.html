@@ -1,0 +1,52 @@
+<div class="container">
+  <div class=" row">
+    <div class="col-2 "></div>
+    <div class="col-8">
+      <div class="card border-primary text-center ">
+        <div class="card-header">Incidencia</div>
+        <div class="card-body">
+          <form [formGroup]="myForm"
+                (ngSubmit)="login()">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input class="form-control"
+                     id="form2Example1"
+                     type="email"
+                     formControlName="email"
+                     placeholder="Correo electrónico"
+                     autofocus required>
+              <label class="form-label" for="form2Example1">Email address</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password"
+                     formControlName="password"
+                     required
+                     placeholder="Ingrese la contraseña"
+                     id="form2Example2"
+                     class="form-control"/>
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+
+
+
+            <!-- Submit button -->
+
+            <input type="submit"
+                   [disabled]="myForm.invalid"
+                   class="btn btn-primary btn-block mb-4" value="Login">
+
+          </form>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+

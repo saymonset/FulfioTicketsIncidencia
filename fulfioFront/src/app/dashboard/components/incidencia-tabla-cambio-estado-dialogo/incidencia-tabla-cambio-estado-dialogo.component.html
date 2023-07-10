@@ -1,0 +1,38 @@
+<div class="container">
+  <div class=" row" >
+    <div class="col-2 "></div>
+    <div class="col-8">
+      <div class="card border-primary text-center ">
+        <div class="card-header">Incidencia</div>
+        <div class="card-body">
+
+          <form  autocomplete="off"
+                 [formGroup]="myForm"
+                 (ngSubmit)="onConfirm()"
+                 class="form-inline">
+            <div class="row mt-3">
+              <div class="col-6">
+                <span class="label-input100">Cambio de estado</span>
+              </div>
+              <div class="col-2">
+                <select  id="tipo_estado" formControlName="estado">
+                  <option> </option>
+                  <option *ngFor="let tipo of names; let i = index">       {{tipo}}
+                  </option>
+                </select>
+                <span class="focus-input100"></span>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button   [disabled]="myForm.invalid" (click)="onConfirm()" cdkFocusInitial>Aceptar</button>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+

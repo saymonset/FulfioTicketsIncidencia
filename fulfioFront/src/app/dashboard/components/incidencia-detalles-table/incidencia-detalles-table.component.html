@@ -1,0 +1,41 @@
+
+<div class="container">
+  <form  autocomplete="off"
+         [formGroup]="myForm"
+         (ngSubmit)="enviar()"
+         class="form-inline">
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <input class="form-control mr-3"
+               type="text"
+               formControlName="mensaje"
+               placeholder="Enviar Mensaje">
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary"   [disabled]="myForm.invalid" (click)="enviar()" cdkFocusInitial>Enviar</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="detallesincidencias.length === 0; else table" class="alert alert-warning text-center">
+    No hay incidencias que mostrar
+  </div>
+
+  <ng-template #table>
+
+    <div class="card" *ngFor="let incidencia of detallesincidencias; let i = index">
+      <h5 class="card-header">{{incidencia?.usuario?.nombre}}</h5>
+      <div class="card-body">
+        <p class="card-text">{{incidencia?.mensaje}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{incidencia?.incidencia?._id}}</p>
+      </div>
+    </div>
+
+
+
+
+
+  </ng-template>

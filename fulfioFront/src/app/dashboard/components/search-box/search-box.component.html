@@ -1,0 +1,13 @@
+<!-- (keyup.enter)="emitValue( txtInput.value )" -->
+<input
+  type="text"
+  aria-label="Recipient's username" 
+  aria-describedby="basic-addon2"
+  class="form-control"
+  [value]="initialValue"
+  [placeholder]="placeholder"
+  (keyup)="onKeyPress( txtInput.value )"
+  #txtInput
+>
+
+ 

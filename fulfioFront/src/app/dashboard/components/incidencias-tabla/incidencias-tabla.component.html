@@ -1,0 +1,68 @@
+
+<div class="row">
+  <div class="col-12">
+    <ul class="nav nav-underline">
+      <li class="nav-item">
+        <a class="{{classEnCurso}}"
+           (click)="activar( '1' )"
+        >En Curso</a>
+      </li>
+      <li class="nav-item">
+        <a class="{{classResuelta}}"
+           (click)="activar( '2' )"
+        >Resuelta</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-12">
+    <div class="input-group mb-3">
+      <shared-search-box
+      (onDebounce)="searchByCapital($event)"
+      [initialValue]="initialValue"
+      placeholder="Buscar por mensaje"></shared-search-box>
+    </div>
+  </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-dark"
+              type="button"
+              [disabled]="isAdmin"
+              (click)="onNuevoIncidencia()">Nueva Incidencia</button>
+    </div>
+</div>
+<div *ngIf="incidencias.length === 0; else table" class="alert alert-warning text-center">
+    No hay incidencias que mostrar
+  </div>
+
+  <ng-template #table>
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+        <div class="col-12">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th># Incidencia</th>
+                <th>Mensaje</th>
+                <th>Estado</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+
+                *ngFor="let incidencia of incidencias; let i = index">
+                <td (click)="emitCharacter(incidencia._id)"><a  class="link-primary">Incidencia #{{ i + 1 }}</a></td>
+                <td>{{  incidencia.mensaje}}</td>
+
+                <td *ngIf="isAdmin"  (click)="onEstadoIncidencia(incidencia._id)"><a  class="link-primary">{{ incidencia.estado }}</a></td>
+                <td *ngIf="!isAdmin" >{{ incidencia.estado }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+
+  </ng-template>
