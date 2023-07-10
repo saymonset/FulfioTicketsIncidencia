@@ -1,16 +1,15 @@
 # BACKEND
 
-0. Ubicarse en la carpeta fulfioBack
-
 1. Ejecutar ```npm install``` para reconstruir los módulos de Node.
 
-2. Tener instalado docker para instalar la bd mongo y Ejecutar 
+2. Ejecutar 
 ```
 docker compose up -d
-
-(Si tiene instalado mongo, No hace falta ejecutar el paso 2)
 ```
-3. Ejecutar ```npm start``` para comenzar la aplicacion.  
+3. Copiar el .env.template y renombrarlo a .env
+
+4. Ejecutar ```npm start``` para comenzar la aplicacion.  
+ 
 
 
 # FrontEnd
