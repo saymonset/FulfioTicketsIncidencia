@@ -10,7 +10,8 @@ const dbConnection = async() => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
-            useFindAndModify: false
+            useFindAndModify: false,
+            dbName:process.env.MONGO_DB_NAME
         });
     
         console.log('Base de datos online');
