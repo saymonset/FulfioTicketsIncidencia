@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, map, tap, of } from 'rxjs';
+import { environment } from 'src/app/environments/environments';
 import {
   CrearIncidencia,
   CrearResposeIncidencia,
@@ -19,7 +20,7 @@ export class IncidenciaServiceService {
 
 
   private http = inject( HttpClient );
-  private baseUrl = 'http://localhost:8081/api';
+  private baseUrl = environment.baseUrl;
   //localhost:8081/api/incidencias
 
   //localhost:8081/api/incidencias

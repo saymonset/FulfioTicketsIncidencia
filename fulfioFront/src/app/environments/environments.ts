@@ -1,5 +1,5 @@
 
 
 export const environment = {
-  baseUrl: 'http://localhost:8081/api'
+  baseUrl: 'https://fulfiobakdespliegue-production.up.railway.app/api'
 }
