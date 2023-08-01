@@ -20,28 +20,10 @@ export class SideMenuComponent {
     { title: 'Pedidos', route: 'pedidos' },
     { title: 'Inventario', route: 'inventario' },
     { title: 'Equipos', route: 'equipos' },
-    { title: 'Incidencias', route: 'incidencias' },
-    { title: 'Devoluciones', route: 'devoluciones' },
+
     { title: 'Salir', route: '/auth' },
   ]);
 
-  // login() {
-  //   const { email, password } = this.myForm.value;
-  //   this.authService.login(email, password)
-  //     .subscribe({
-  //       next: () => this.router.navigateByUrl('/dashboard'),
-  //       error: (message) => {
-  //         //     console.log('Hol mundo');
-  //         //   console.log(`${message}`);
-  //         Swal.fire('Error', message, 'error' )
-  //       }
-  //     })
-  // }
 
-  // public menuItems: MenuItem[] = [
-  //   { title: 'Contador', route: 'counter' },
-  //   { title: 'Usuario', route: 'user-info' },
-  //   { title: 'Mutaciones', route: 'properties' },
-  // ];
 
 }
