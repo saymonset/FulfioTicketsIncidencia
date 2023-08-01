@@ -19,6 +19,7 @@ export class SideMenuComponent {
   public menuItems = signal<MenuItem[]>([
     { title: 'Pedidos', route: 'pedidos' },
     { title: 'Inventario', route: 'inventario' },
+    { title: 'Equipos', route: 'equipos' },
     { title: 'Incidencias', route: 'incidencias' },
     { title: 'Devoluciones', route: 'devoluciones' },
     { title: 'Salir', route: '/auth' },

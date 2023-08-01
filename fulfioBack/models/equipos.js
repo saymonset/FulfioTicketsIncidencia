@@ -2,37 +2,30 @@
 const { Schema, model } = require('mongoose');
 
 const EquipoSchema = Schema({
-    createdAt: { 
+    creadoEn: { 
         type: Date, 
         default: Date.now 
     },
-    mensaje: {
+    nombre: {
         type: String,
         required: true
     },
-    num_incidencia: {
+    ipv4: {
         type: String
     },
-    tipo_incidencia: {
-        type: String,
+    status: {
+        type: Boolean,
         required: true,
-        default: 'DUDA',
-        emun: ['DUDA', 'PEDIDO', 'INTEGRACION']
-    },
-    estado: {
-        type: String,
-        required: true,
-        default: 'en-curso',
-        emun: ['resuelta', 'en-curso']
+        default: true,
     }
 });
 
 
 
 EquipoSchema.methods.toJSON = function() {
-    const { __v,...incidencia  } = this.toObject();
+    const { __v,...equipo  } = this.toObject();
     
-    return incidencia;
+    return equipo;
 }
 
 module.exports = model( 'Equipo', EquipoSchema );

@@ -1,0 +1,38 @@
+<div *ngIf="!idBuscarDetalle; else table">
+
+
+    <div class="row">
+        <div class="col-12">
+        <hr>
+          <app-equipos [incidencias]="incidencias"
+                       (onNewCharacter)="obtenerId($event)"
+                       (onSearchIncidencia)="onSearchIncidencia($event)"
+                       (onRefrescar)="refrescarIncidencias($event)"
+          ></app-equipos>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #table>
+<div class="row">
+    <div class="col-4">
+        <hr>
+        <app-equipos [incidencias]="incidencias"
+                     (onNewCharacter)="obtenerId($event)"
+                     (onSearchIncidencia)="onSearchIncidencia($event)"
+                     (onRefrescar)="refrescarIncidencias($event)"
+                     ></app-equipos>
+    </div>
+
+    <div class="col-8">
+        <hr>
+        <incidencia-detalles-table
+          [detallesincidencias]="detallesincidencias"
+          (onRefrescar)="refrescarResponseIncidencias($event)">
+        </incidencia-detalles-table>
+    </div>
+</div>
+
+</ng-template>
+

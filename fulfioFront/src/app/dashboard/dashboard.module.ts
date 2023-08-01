@@ -7,6 +7,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
 import { IncidenciaComponent } from './pages/incidencia/incidencia.component';
+import { EquipoPagessComponent } from './pages/equipos/equipos.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
 import { DevolucionesComponent } from './pages/devoluciones/devoluciones.component';
 import { IncidenciasTablaComponent } from './components/incidencias-tabla/incidencias-tabla.component';
 import { IncidenciaDetallesTableComponent } from './components/incidencia-detalles-table/incidencia-detalles-table.component';
@@ -15,6 +17,8 @@ import { IncidenciaTablaDialogComponent } from './components/incidencia-tabla-di
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IncidenciaTablaCambioEstadoDialogoComponent } from './components/incidencia-tabla-cambio-estado-dialogo/incidencia-tabla-cambio-estado-dialogo.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { IncidenciaTablaCambioEstadoDialogoComponent } from './components/incide
     IncidenciaDetallesTableComponent,
     SearchBoxComponent,
     IncidenciaTablaDialogComponent,
-    IncidenciaTablaCambioEstadoDialogoComponent
+    IncidenciaTablaCambioEstadoDialogoComponent,
+    EquiposComponent,
+    EquipoPagessComponent
+  
   ],
   imports: [
     CommonModule,

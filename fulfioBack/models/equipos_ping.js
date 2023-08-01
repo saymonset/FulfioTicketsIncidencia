@@ -5,21 +5,18 @@ const EquiposPingSchema = Schema({
         type: Date, 
         default: Date.now 
     },
-    mensaje: {
-        type: String,
-        required: true
+    respuesta: {
+        type: Boolean,
+        required: true,
+        default: false,
     },
-    archivo: {
-        type: String
-    },
-    
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
     },
     
-    incidencia: {
+    equipo: {
         type: Schema.Types.ObjectId,
         ref: 'Equipo',
         required: true

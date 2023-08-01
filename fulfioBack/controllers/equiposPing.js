@@ -4,47 +4,74 @@ const EquiposPing = require('../models/equipos_ping');
 
 
 
-const obtenerResponseIncidencia = async(req, res = response ) => {
+const obtenerEquiposPing = async(req, res = response ) => {
 
-    let respose_incidencias =  await EquiposPing.find()
-    .populate('incidencia')
+    let respose=  await EquiposPing.find()
+    .populate('equipo')
     .populate('usuario');
 
      
 
     const { id } = req.params;
-    const { estado} = req.query;
+    const { respuesta} = req.query;
 
-   // console.log('estado='+estado);
-   // console.log('idhhh'+id);
-
-    if (estado){
-      respose_incidencias =  respose_incidencias.filter(element => {
-            return  element.incidencia?.estado.toLowerCase()== estado.toLowerCase()
+    if (respuesta){
+      respose =  respose.filter(element => {
+            return  element.respuesta == respuesta
           })
 
     }
 
-    console.log(respose_incidencias);
 
     if (id){
-      respose_incidencias =  respose_incidencias.filter(element => {
+      respose =  respose.filter(element => {
       //  console.log(element.incidencia?._id);
-        return  element.incidencia?._id == id
+        return  element.equipo?._id == id
       })
     }
 
-   
-
-
     res.json({
-      respose_incidencias
+      respose
     });
 }
 
 
 
-const crearResIncidencia = async(req, res = response ) => {
+
+const EquiposPingGet = async(req, res = response ) => {
+
+  let respose=  await EquiposPing.find()
+  .populate('equipo')
+  .populate('usuario');
+
+  const { respuesta} = req.query;
+
+  let resp = false;
+   
+ 
+
+  if (respuesta?.toLowerCase() === 'true') {
+       resp = true;
+   }
+
+  if (respuesta){
+    respose =  respose.filter(element => {
+  //   console.log(respuesta+'=respuesta element.respuesta =' +  element.respuesta );
+    //  console.log(resp);
+      //console.log(` vvvelement.respuesta == respuesta ${element.respuesta == respuesta}`);
+          return  element.respuesta == resp
+        })
+
+  }
+
+  res.json({
+    respose
+  });
+}
+
+
+
+const crearEquiposPing = async(req, res = response ) => {
 
     const {  ...body } = req.body;
 
@@ -68,7 +95,8 @@ const crearResIncidencia = async(req, res = response ) => {
 
 
 module.exports = {
-    crearResIncidencia,
-    obtenerResponseIncidencia,
+    crearEquiposPing,
+    obtenerEquiposPing,
+    EquiposPingGet
 
 }

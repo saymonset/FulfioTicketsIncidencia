@@ -3,8 +3,8 @@ const { check } = require('express-validator');
 
 const { validarJWT, validarCampos, esAdminRole } = require('../middlewares');
 
-const { crearResIncidencia,
-        obtenerResponseIncidencia,
+const { crearEquiposPing,
+        EquiposPingGet
        } = require('../controllers/equiposPing');
 
 const { existeUsuarioPorId,existeUIncidenciaPorId, existeProductoPorId } = require('../helpers/db-validators');
@@ -12,18 +12,19 @@ const { existeUsuarioPorId,existeUIncidenciaPorId, existeProductoPorId } = requi
 const router = Router();
 
 
-router.get('/:id', obtenerResponseIncidencia );
-
-
-
+router.get('/', [   
+                check('respuesta','La respuesta es obligatoria').not().isEmpty(),
+                validarCampos
+],EquiposPingGet );
+ 
 
 router.post('/', [
-    check('mensaje','El mensaje es obligatorio').not().isEmpty(),
-    check('incidencia','No es un id de Mongo').isMongoId(),
+    check('respuesta','La respuesta es obligatoria').not().isEmpty(),
+    check('equipo','No es un id de Mongo').isMongoId(),
     check('usuario','No es un id de Mongo').isMongoId(),
     check('usuario').custom( existeUsuarioPorId ),
     validarCampos
-], crearResIncidencia );
+], crearEquiposPing );
 
 
 

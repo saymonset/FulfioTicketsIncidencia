@@ -12,26 +12,27 @@ const {
 const router = Router();
 
 
-const { incidenciasGet,
-        incidenciaPost,
-        incidenciaPut,
-        incidenciaDelete
+const { equiposGet,
+         equipoPost,
+        equiposPut,
+        equipoDelete
    } = require('../controllers/equipos');
 
-router.get('/', incidenciasGet );
+router.get('/', equiposGet );
 
 router.post('/',[
-    check('tipo_incidencia', 'El  tipo de incidencia es obligatorio').not().isEmpty(),
+    check('nombre', 'El nombre del obligatorio').not().isEmpty(),
+    check('ipv4', 'El IP es obligatorio').not().isEmpty(),
     validarCampos
-], incidenciaPost );
+], equipoPost );
 
 router.put('/:id',[
-    check('estado', 'El  estado es obligatorio').not().isEmpty(),
+    check('status', 'El  status es obligatorio').not().isEmpty(),
     validarCampos
-],incidenciaPut );
+],equiposPut );
 
 
 
-router.delete('/:id',incidenciaDelete );
+router.delete('/:id',equipoDelete );
 
 module.exports = router;
