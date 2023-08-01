@@ -1,7 +1,11 @@
 const { response } = require('express');
 
-const EquiposPing = require('../models/equipos_ping');
+//const   ping  = require('node-http-ping');
+const ping = require('ping');
 
+
+const EquiposPing = require('../models/equipos_ping');
+const Equipo = require('../models/Equipos');
 
 
 const obtenerEquiposPing = async(req, res = response ) => {
@@ -73,12 +77,26 @@ const EquiposPingGet = async(req, res = response ) => {
 
 const crearEquiposPing = async(req, res = response ) => {
 
-    const {  ...body } = req.body;
+    let {  ...body } = req.body;
 
-
+    let {respuesta, equipo } = req.body;
+  
+    if (equipo){
+      let {ipv4} = await Equipo.findById(equipo);
+      try {
+     console.log(respuesta);
+       await ping.sys.probe(ipv4, function(isAlive){
+          respuesta = isAlive;
+      })
+      } catch (error) {
+        respuesta = false;
+      }
+        console.log('resp ='+respuesta);
+     }
     // Generar la data a guardar
     const data = {
-        ...body
+        ...body,
+        respuesta
     }
 
     const rsi = new EquiposPing( data );

@@ -13,13 +13,11 @@ const router = Router();
 
 
 router.get('/', [   
-                check('respuesta','La respuesta es obligatoria').not().isEmpty(),
                 validarCampos
 ],EquiposPingGet );
  
 
 router.post('/', [
-    check('respuesta','La respuesta es obligatoria').not().isEmpty(),
     check('equipo','No es un id de Mongo').isMongoId(),
     check('usuario','No es un id de Mongo').isMongoId(),
     check('usuario').custom( existeUsuarioPorId ),

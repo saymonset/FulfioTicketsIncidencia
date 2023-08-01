@@ -29,7 +29,7 @@
                 (click)="onNuevoIncidencia()">Nueva Incidencia</button>
       </div>
   </div>
-  <div *ngIf="incidencias.length === 0; else table" class="alert alert-warning text-center">
+  <div *ngIf="equipos.length === 0; else table" class="alert alert-warning text-center">
       No hay incidencias que mostrar
     </div>
   
@@ -52,12 +52,12 @@
               <tbody>
                 <tr
   
-                  *ngFor="let incidencia of incidencias; let i = index">
-                  <td (click)="emitCharacter(incidencia._id)"><a  class="link-primary">Incidencia #{{ i + 1 }}</a></td>
-                  <td>{{  incidencia.mensaje}}</td>
+                  *ngFor="let equipo of equipos; let i = index">
+                  <td (click)="emitCharacter(equipo._id)"><a  class="link-primary">Ping #{{ i + 1 }}</a></td>
+                  <td>{{  equipo.nombre}}</td>
   
-                  <td *ngIf="isAdmin"  (click)="onEstadoIncidencia(incidencia._id)"><a  class="link-primary">{{ incidencia.estado }}</a></td>
-                  <td *ngIf="!isAdmin" >{{ incidencia.estado }}</td>
+                  <td *ngIf="isAdmin"  (click)="onEstadoIncidencia(equipo._id)"><a  class="link-primary">{{ equipo.ipv4 }}</a></td>
+                  <td *ngIf="!isAdmin" >{{ equipo.ipv4 }}</td>
                 </tr>
               </tbody>
             </table>

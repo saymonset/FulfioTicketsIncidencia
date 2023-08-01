@@ -17,6 +17,8 @@ import { IncidenciaTablaDialogComponent } from './components/incidencia-tabla-di
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IncidenciaTablaCambioEstadoDialogoComponent } from './components/incidencia-tabla-cambio-estado-dialogo/incidencia-tabla-cambio-estado-dialogo.component';
+import { NuevoEquipoComponent } from './components/dialog/nuevo-equipo/nuevo-equipo.component';
+import { EquiposPingComponent } from './components/equipos-ping/equipos-ping.component';
 
 
 
@@ -34,7 +36,10 @@ import { IncidenciaTablaCambioEstadoDialogoComponent } from './components/incide
     IncidenciaTablaDialogComponent,
     IncidenciaTablaCambioEstadoDialogoComponent,
     EquiposComponent,
-    EquipoPagessComponent
+    EquipoPagessComponent,
+    NuevoEquipoComponent,
+    EquiposPingComponent
+  
   
   ],
   imports: [

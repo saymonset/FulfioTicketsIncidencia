@@ -5,7 +5,20 @@ const Equipo = require('../models/Equipos');
 
 
 const equiposGet = async(req = request, res = response) => {
-    let equipos = await Equipo.find();
+
+    const { id } = req.params;
+
+    console.log({id});
+
+    let  equipos = [];
+ 
+    if (id){
+         equipos = await Equipo.findById(id);
+    }else{
+         equipos = await Equipo.find();
+    }
+
+    
 
     const {status} = req.query;
 

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Incidencia, ResposeIncidencia } from '../../interfaces/incidencia-request.interface';
-import { IncidenciaServiceService } from '../../services/incidencia-service.service';
-import {searchBy} from "../../interfaces/search-incidencia.interface";
+import { EquiposService } from '../../services/equipos.service';
+import { Equipo, EquipoPingResponse, searchCompuBy } from '../../interfaces/equipos.interface';
 
 @Component({
   selector: 'equipos',
@@ -10,24 +10,30 @@ import {searchBy} from "../../interfaces/search-incidencia.interface";
 })
 export class EquipoPagessComponent implements OnInit {
 
-  private incidenciaServiceService = inject(IncidenciaServiceService);
+  private equipoService = inject(EquiposService);
 
   public incidencias: Incidencia[] = [];
 
-  public detallesincidencias: ResposeIncidencia[] = [];
+  public equipos: Equipo[] = [];
+
+  public equipoPing: Equipo[] = [];
+
+  public detalles: string = '';
 
   public idBuscarDetalle:string='';
-  public busqueda:searchBy={
-    estado:    '',
-    mensaje:   ''
+
+  public busqueda:searchCompuBy={
+    id:    ''
   }
 
 
-  private buscarIncidencias():void{
-    this.incidenciaServiceService.getIncidencias(this.busqueda)
+  private buscarEquipos():void{
+    this.equipoService.getEquipos(this.busqueda)
       .subscribe({
         next: (data) => {
-          this.incidencias = data;
+          this.equipos= data;
+
+          console.log(data);
         },
         error: () => {
         },
@@ -35,13 +41,13 @@ export class EquipoPagessComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.buscarIncidencias();
+    this.buscarEquipos();
   }
 
 
   refrescarIncidencias(refrescar:boolean):void{
     if (refrescar){
-      this.buscarIncidencias();
+      this.buscarEquipos();
     }
   }
 
@@ -56,33 +62,38 @@ export class EquipoPagessComponent implements OnInit {
   }
 
   obtenerId(id:string):void{
-
-    if (id){
+ 
+    if (this.idBuscarDetalle !== id){
       this.idBuscarDetalle = id;
-      if (this.idBuscarDetalle){
-        if (id){
-          localStorage.setItem('uidIncidencia',id);
-          this.incidenciaServiceService.geDetallesIncidencias(this.idBuscarDetalle )
-            .subscribe({
-              next: (data) => {
-                if(data){
-                  this.detallesincidencias = data;
-                }
-              },
-              error: () => {
-              },
-            });
+
+      this.busqueda.id=id;
+      this.equipoService.createEquipoPing(id)
+      .subscribe({
+        next: ({respuesta}) => {
+         // let {ipv4} = data;
+ 
+         this.detalles=`Ping rechazado`   ;
+        if(respuesta){
+          this.detalles=`La ip hizo ping`   ;
         }
+       
+  
+        },
+        error: () => {
+        },
+      });
+     
+    }else{
+      this.idBuscarDetalle = '';
     }
 
-
-
-    }
+    console.log(id);
+ 
   }
 
-  public onSearchIncidencia(busqueda:searchBy):void{
+  public onSearchIncidencia(busqueda:searchCompuBy):void{
     this.busqueda = busqueda;
-    this.buscarIncidencias();
+    this.buscarEquipos();
   }
 
 }

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Incidencia } from '../../interfaces/incidencia-request.interface';
-import {searchBy} from "../../interfaces/search-incidencia.interface";
 import { IncidenciaTablaDialogComponent } from '../incidencia-tabla-dialog/incidencia-tabla-dialog.component';
 import {
   IncidenciaTablaCambioEstadoDialogoComponent
 } from "../incidencia-tabla-cambio-estado-dialogo/incidencia-tabla-cambio-estado-dialogo.component";
+import { Equipo, searchCompuBy } from '../../interfaces/equipos.interface';
+import { NuevoEquipoComponent } from '../dialog/nuevo-equipo/nuevo-equipo.component';
 
 @Component({
   selector: 'app-equipos',
@@ -21,15 +21,14 @@ export class EquiposComponent implements OnInit {
     }
 
     this.busqueda = {
-            estado:    '',
-            mensaje:   ''
+            id:    ''
           }
   }
 
   public dialog = inject(MatDialog);
 
   @Input()
-  public incidencias: Incidencia[] = [];
+  public equipos: Equipo[] = [];
 
   public classResuelta = "nav-link ";
   public classEnCurso ="nav-link active";
@@ -48,11 +47,12 @@ export class EquiposComponent implements OnInit {
 
   /***Busqueda emitir valores */
   @Output()
-  public onSearchIncidencia: EventEmitter<searchBy> = new EventEmitter();
+  public onSearchIncidencia: EventEmitter<searchCompuBy> = new EventEmitter();
+
   public initialValue: string = '';
-  public busqueda:searchBy={
-    estado:    '',
-    mensaje:   ''
+
+  public busqueda:searchCompuBy={
+    id:    ''
   }
 
 
@@ -71,12 +71,10 @@ export class EquiposComponent implements OnInit {
     if  (act === '1') {
       this.classResuelta = "nav-link ";
       this.classEnCurso ="nav-link active";
-      this.busqueda.estado='en-curso';
       this.onSearchIncidencia.emit(this.busqueda);
     }else{
       this.classResuelta = "nav-link active";
       this.classEnCurso ="nav-link ";
-      this.busqueda.estado='resuelta';
       this.onSearchIncidencia.emit(this.busqueda);
     }
 
@@ -85,12 +83,12 @@ export class EquiposComponent implements OnInit {
 
   searchByCapital( term: string ):void  {
     this.onNewCharacter.emit('');
-    this.busqueda.mensaje=term;
+  
     this.onSearchIncidencia.emit(this.busqueda);
   }
 
   onNuevoIncidencia(){
-    const dialogRef = this.dialog.open(IncidenciaTablaDialogComponent, {
+    const dialogRef = this.dialog.open(NuevoEquipoComponent, {
       data: {mensaje: 'Hellos', estado: 'En curso'},
       height: '400px',
       width: '80%',
@@ -100,6 +98,7 @@ export class EquiposComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if ( result) {
+      
         this.onRefrescar.emit(result);
       }
     });

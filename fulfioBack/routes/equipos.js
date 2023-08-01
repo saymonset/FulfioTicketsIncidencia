@@ -18,6 +18,8 @@ const { equiposGet,
         equipoDelete
    } = require('../controllers/equipos');
 
+router.get('/:id', equiposGet );
+
 router.get('/', equiposGet );
 
 router.post('/',[
