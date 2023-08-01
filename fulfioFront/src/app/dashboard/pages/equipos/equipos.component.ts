@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Incidencia, ResposeIncidencia } from '../../interfaces/incidencia-request.interface';
 import { EquiposService } from '../../services/equipos.service';
-import { Equipo, EquipoPingResponse, searchCompuBy } from '../../interfaces/equipos.interface';
+import { Equipo, searchCompuBy } from '../../interfaces/equipos.interface';
 
 @Component({
   selector: 'equipos',
@@ -12,7 +11,6 @@ export class EquipoPagessComponent implements OnInit {
 
   private equipoService = inject(EquiposService);
 
-  public incidencias: Incidencia[] = [];
 
   public equipos: Equipo[] = [];
 
@@ -63,15 +61,12 @@ export class EquipoPagessComponent implements OnInit {
 
   obtenerId(id:string):void{
  
+    this.detalles='';
     if (this.idBuscarDetalle !== id){
       this.idBuscarDetalle = id;
-
-      this.busqueda.id=id;
       this.equipoService.createEquipoPing(id)
       .subscribe({
         next: ({respuesta}) => {
-         // let {ipv4} = data;
- 
          this.detalles=`Ping rechazado`   ;
         if(respuesta){
           this.detalles=`La ip hizo ping`   ;
@@ -87,8 +82,6 @@ export class EquipoPagessComponent implements OnInit {
       this.idBuscarDetalle = '';
     }
 
-    console.log(id);
- 
   }
 
   public onSearchIncidencia(busqueda:searchCompuBy):void{

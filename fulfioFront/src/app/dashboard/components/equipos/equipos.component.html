@@ -26,7 +26,7 @@
         <button class="btn btn-dark"
                 type="button"
                 [disabled]="isAdmin"
-                (click)="onNuevoIncidencia()">Nueva Incidencia</button>
+                (click)="onNuevoIncidencia()">Nuevo equipo</button>
       </div>
   </div>
   <div *ngIf="equipos.length === 0; else table" class="alert alert-warning text-center">
@@ -43,8 +43,8 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th># Incidencia</th>
-                  <th>Mensaje</th>
+                  <th># ping</th>
+                  <th>Nombre</th>
                   <th>Estado</th>
   
                 </tr>
