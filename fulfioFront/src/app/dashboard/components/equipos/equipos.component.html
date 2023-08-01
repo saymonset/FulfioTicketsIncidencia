@@ -14,23 +14,15 @@
         </li>
       </ul>
     </div>
-    <div class="col-12">
-      <div class="input-group mb-3">
-        <shared-search-box
-        (onDebounce)="searchByCapital($event)"
-        [initialValue]="initialValue"
-        placeholder="Buscar por mensaje"></shared-search-box>
-      </div>
-    </div>
       <div class="d-grid gap-2">
         <button class="btn btn-dark"
                 type="button"
                 [disabled]="isAdmin"
-                (click)="onNuevoIncidencia()">Nuevo equipo</button>
+                (click)="onNuevo()">Nuevo equipo</button>
       </div>
   </div>
   <div *ngIf="equipos.length === 0; else table" class="alert alert-warning text-center">
-      No hay incidencias que mostrar
+      No hay equipos que mostrar
     </div>
   
     <ng-template #table>
@@ -56,7 +48,7 @@
                   <td (click)="emitCharacter(equipo._id)"><a  class="link-primary">Ping #{{ i + 1 }}</a></td>
                   <td>{{  equipo.nombre}}</td>
   
-                  <td *ngIf="isAdmin"  (click)="onEstadoIncidencia(equipo._id)"><a  class="link-primary">{{ equipo.ipv4 }}</a></td>
+                  <td *ngIf="isAdmin"  (click)="onEstado(equipo._id)"><a  class="link-primary">{{ equipo.ipv4 }}</a></td>
                   <td *ngIf="!isAdmin" >{{ equipo.ipv4 }}</td>
                 </tr>
               </tbody>
